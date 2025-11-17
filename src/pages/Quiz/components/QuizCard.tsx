@@ -1,18 +1,18 @@
 import { FormControlLabel, Radio, Stack, Typography } from '@mui/material';
-import { useState } from 'react';
-import questions from '../questions.json';
+import type { IQuestion } from '../types';
 
-const QuizCard = () => {
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const currentQuestion = questions[currentQuestionIndex];
+interface IQuizCardProps {
+  question: IQuestion;
+}
 
+const QuizCard = ({ question }: IQuizCardProps) => {
   return (
     <Stack direction='column' spacing={2}>
       <Typography>
-        {currentQuestionIndex + 1}. {currentQuestion.question}
+        {question.id}. {question.question}
       </Typography>
       <Stack direction='column' spacing={2}>
-        {currentQuestion.options.map((answer, index) => (
+        {question.options.map((answer, index) => (
           <FormControlLabel key={index} control={<Radio />} label={answer} />
         ))}
       </Stack>
